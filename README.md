@@ -124,3 +124,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Support
 
 For support, email [support@kidslearn.com](mailto:support@kidslearn.com) or open an issue in the repository.
+
+## Custom CSS & JavaScript
+
+- The `.highlight` CSS class adds a yellow highlight effect to any element.
+- Add the `highlight-on-click` class to any HTML element to make it highlight when clicked (see resources/js/app.js for details).

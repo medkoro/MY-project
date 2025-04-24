@@ -221,3 +221,10 @@
         transform: translateY(-5px);
     }
 }
+
+/* Custom highlight effect */
+.highlight {
+    background-color: #fff9c4;
+    border: 2px solid #ffe082;
+    transition: background 0.3s, border 0.3s;
+}

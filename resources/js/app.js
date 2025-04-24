@@ -16,3 +16,12 @@ window.images = images;
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Kids Learning app loaded');
 });
+
+// Highlight elements on click example
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.highlight-on-click').forEach(el => {
+        el.addEventListener('click', function() {
+            this.classList.toggle('highlight');
+        });
+    });
+});
