@@ -6,13 +6,13 @@
     <!-- Fun background elements -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-10 left-10 w-20 h-20 animate-float">
-            <img src="{{ asset('images/les-fruits/apple.png') }}" alt="Fruit" class="w-full h-full object-contain">
+            {{-- Image removed --}}
         </div>
         <div class="absolute top-20 right-20 w-16 h-16 animate-float-delay-1">
-            <img src="{{ asset('images/les-animaux/cat.png') }}" alt="Animal" class="w-full h-full object-contain">
+            {{-- Image removed --}}
         </div>
         <div class="absolute bottom-20 left-1/4 w-24 h-24 animate-float-delay-2">
-            <img src="{{ asset('images/transport/bus.png') }}" alt="Transport" class="w-full h-full object-contain">
+            {{-- Image removed --}}
         </div>
     </div>
 
@@ -30,7 +30,7 @@
             <!-- Colors Card -->
             <div class="category-card colors">
                 <div class="category-icon mb-4">
-                    <img src="{{ asset('images/les-fruits/rainbow.png') }}" alt="Colors" class="w-20 h-20 mx-auto">
+                    {{-- Image removed --}}
                 </div>
                 <h2 class="category-title text-red-600">Couleurs 🎨</h2>
                 <p class="category-description">Apprenez les couleurs de manière amusante.</p>
@@ -42,7 +42,7 @@
             <!-- Numbers Card -->
             <div class="category-card numbers">
                 <div class="category-icon mb-4">
-                    <img src="{{ asset('images/les-fruits/numbers.png') }}" alt="Numbers" class="w-20 h-20 mx-auto">
+                    {{-- Image removed --}}
                 </div>
                 <h2 class="category-title text-green-600">Nombres 🔢</h2>
                 <p class="category-description">Apprenez les nombres avec des sons interactifs.</p>
@@ -54,7 +54,7 @@
             <!-- Animals Card -->
             <div class="category-card animals">
                 <div class="category-icon mb-4">
-                    <img src="{{ asset('images/les-animaux/dog.png') }}" alt="Animals" class="w-20 h-20 mx-auto">
+                    {{-- Image removed --}}
                 </div>
                 <h2 class="category-title text-blue-600">Animaux 🐾</h2>
                 <p class="category-description">Découvrez les sons des animaux.</p>
@@ -65,4 +65,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

@@ -3,29 +3,24 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-    <!-- Users Card -->
-    <div class="dashboard-card border-blue-500">
-        <div class="dashboard-stat text-blue-600">{{ $usersCount ?? 0 }}</div>
-        <div class="dashboard-label">Total Users</div>
-    </div>
-
-    <!-- Categories Card -->
-    <div class="dashboard-card border-purple-500">
-        <div class="dashboard-stat text-purple-600">{{ $categoriesCount ?? 0 }}</div>
-        <div class="dashboard-label">Categories</div>
-    </div>
-
-    <!-- Contents Card -->
-    <div class="dashboard-card border-green-500">
-        <div class="dashboard-stat text-green-600">{{ $contentsCount ?? 0 }}</div>
-        <div class="dashboard-label">Learning Contents</div>
-    </div>
-
-    <!-- Games Card -->
-    <div class="dashboard-card border-pink-500">
-        <div class="dashboard-stat text-pink-600">{{ $gamesCount ?? 0 }}</div>
-        <div class="dashboard-label">Games</div>
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">Admin Dashboard</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Total Users</h2>
+            <p class="text-4xl font-bold text-blue-600">{{ $stats['users'] }}</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Total Games</h2>
+            <p class="text-4xl font-bold text-green-600">{{ $stats['games'] }}</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Total Categories</h2>
+            <p class="text-4xl font-bold text-purple-600">{{ $stats['categories'] }}</p>
+        </div>
     </div>
 </div>
 
