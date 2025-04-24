@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // Nom de l'animal
             $table->string('image_path'); // Chemin de l'image
-            $table->string('audio_path'); // Chemin du fichier audio
+            $table->string('audio_path')->nullable(); // Chemin du fichier audio
             $table->timestamps();
         });
     }

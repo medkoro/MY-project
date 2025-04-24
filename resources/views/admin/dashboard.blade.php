@@ -3,48 +3,58 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
-<div class="admin-dashboard">
-    <!-- Statistics Cards -->
-    <div class="stats-grid">
-        <div class="admin-card">
-            <h3>Total Users</h3>
-            <p class="stat-number">{{ $stats['users']['total'] }}</p>
-            <p class="stat-label">Active: {{ $stats['users']['active'] }}</p>
-        </div>
-
-        <div class="admin-card">
-            <h3>Total Games</h3>
-            <p class="stat-number">{{ $stats['games']['total'] }}</p>
-            <p class="stat-label">Active: {{ $stats['games']['active'] }}</p>
-        </div>
-
-        <div class="admin-card">
-            <h3>Total Content</h3>
-            <p class="stat-number">{{ $stats['content']['total'] }}</p>
-            <p class="stat-label">Published: {{ $stats['content']['published'] }}</p>
-        </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Users Card -->
+    <div class="dashboard-card border-blue-500">
+        <div class="dashboard-stat text-blue-600">{{ $usersCount ?? 0 }}</div>
+        <div class="dashboard-label">Total Users</div>
     </div>
 
-    <!-- Recent Activity -->
-    <div class="admin-card">
-        <div class="admin-card-header">
-            <h2>Recent Activity</h2>
-        </div>
-        <div class="activity-list">
-            <!-- Activity items will be added dynamically -->
-        </div>
+    <!-- Categories Card -->
+    <div class="dashboard-card border-purple-500">
+        <div class="dashboard-stat text-purple-600">{{ $categoriesCount ?? 0 }}</div>
+        <div class="dashboard-label">Categories</div>
     </div>
 
-    <!-- Quick Actions -->
-    <div class="admin-card">
-        <div class="admin-card-header">
-            <h2>Quick Actions</h2>
-        </div>
-        <div class="quick-actions">
-            <a href="{{ route('admin.contents.create') }}" class="admin-btn admin-btn-primary">Add New Content</a>
-            <a href="{{ route('admin.games.create') }}" class="admin-btn admin-btn-primary">Add New Game</a>
-            <a href="{{ route('admin.categories.create') }}" class="admin-btn admin-btn-primary">Add New Category</a>
-        </div>
+    <!-- Contents Card -->
+    <div class="dashboard-card border-green-500">
+        <div class="dashboard-stat text-green-600">{{ $contentsCount ?? 0 }}</div>
+        <div class="dashboard-label">Learning Contents</div>
+    </div>
+
+    <!-- Games Card -->
+    <div class="dashboard-card border-pink-500">
+        <div class="dashboard-stat text-pink-600">{{ $gamesCount ?? 0 }}</div>
+        <div class="dashboard-label">Games</div>
+    </div>
+</div>
+
+<!-- Recent Activities -->
+<div class="card">
+    <h2 class="text-xl font-bold mb-4">Recent Activities</h2>
+    <div class="table-container">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="table-header">
+                <tr>
+                    <th class="table-cell">User</th>
+                    <th class="table-cell">Action</th>
+                    <th class="table-cell">Date</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @forelse($recentActivities ?? [] as $activity)
+                <tr class="table-row">
+                    <td class="table-cell">{{ $activity->user_name }}</td>
+                    <td class="table-cell">{{ $activity->description }}</td>
+                    <td class="table-cell">{{ $activity->created_at->diffForHumans() }}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="3" class="table-cell text-center text-gray-500">No recent activities</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection 

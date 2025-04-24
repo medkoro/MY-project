@@ -1,30 +1,22 @@
 <!-- filepath: /c:/Users/T470s/kids-learning-site/resources/views/colors/index.blade.php -->
-@extends('layouts.app')
-
-@section('content')
-    <h1 style="text-align: center; font-family: 'Comic Sans MS', cursive, sans-serif; color: #FF5733; margin-bottom: 30px;">
-        Apprendre les Couleurs 🎨
-    </h1>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 20px;">
-        @foreach ($colors as $color)
-            <div style="text-align: center; border-radius: 50%; width: 150px; height: 150px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); background-color: {{ $color->hex_code }}; display: flex; align-items: center; justify-content: center; transition: transform 0.3s, box-shadow 0.3s;">
-                <!-- Bouton pour jouer le son -->
-                <button 
-                    style="width: 100%; height: 100%; background: none; color: white; font-size: 20px; font-weight: bold; border: none; border-radius: 50%; cursor: pointer; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"
-                    onmouseover="this.parentElement.style.transform='scale(1.1)'; this.parentElement.style.boxShadow='0 12px 20px rgba(0, 0, 0, 0.3)';"
-                    onmouseout="this.parentElement.style.transform='scale(1)'; this.parentElement.style.boxShadow='0 8px 15px rgba(0, 0, 0, 0.2)';"
-                    onclick="playSound('{{ asset('audio/colors/' . strtolower($color->name) . '.mp3') }}')">
-                    {{ $color->name }}
-                </button>
+<x-app-layout>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h2 class="text-2xl font-bold mb-6">{{ __('Colors / Couleurs') }}</h2>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        @foreach($colors as $color)
+                            <div class="p-4 rounded-lg shadow-md text-center transition-transform hover:scale-105"
+                                 style="background-color: {{ $color->hex_code }}; color: {{ in_array($color->name, ['White', 'Yellow']) ? 'black' : 'white' }}">
+                                <div class="font-bold mb-2">{{ $color->name }}</div>
+                                <div>{{ $color->name_fr }}</div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-        @endforeach
+        </div>
     </div>
-
-    <!-- Script pour jouer le son -->
-    <script>
-        function playSound(audioPath) {
-            const audio = new Audio(audioPath);
-            audio.play();
-        }
-    </script>
-@endsection
+</x-app-layout>

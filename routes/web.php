@@ -29,8 +29,8 @@ use App\Http\Controllers\Admin\UserController;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-Route::get('/numbers', [NumberController::class, 'index'])->name('numbers.index');
 Route::get('/colors', [ColorController::class, 'index'])->name('colors.index');
+Route::get('/numbers', [NumberController::class, 'index'])->name('numbers.index');
 Route::get('/animals', [AnimalController::class, 'index'])->name('animals.index');
 Route::get('/games', [GameController::class, 'index'])->name('games');
 Route::get('/learn', function () {

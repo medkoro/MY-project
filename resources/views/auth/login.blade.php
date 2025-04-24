@@ -2,28 +2,69 @@
 @extends('layouts.app')
 
 @section('content')
-    <div style="max-width: 400px; margin: 50px auto; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9;">
-        <h2 style="text-align: center; font-family: 'Comic Sans MS', cursive; color: #4CAF50;">Connexion</h2>
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <div style="margin-bottom: 15px;">
-                <label for="email" style="font-weight: bold;">Adresse Email</label>
-                <input id="email" type="email" name="email" required autofocus style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+<div class="min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center text-2xl mb-6">Welcome Back! 👋</h2>
+
+                @if (session('status'))
+                    <div class="mb-4 text-sm font-medium text-green-600">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
+                            class="input @error('email') border-red-500 @enderror">
+                        @error('email')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
+                        <input id="password" type="password" name="password" required
+                            class="input @error('password') border-red-500 @enderror">
+                        @error('password')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="flex items-center justify-between mb-6">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="remember" class="rounded border-gray-300 text-blue-500 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                            <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                        </label>
+
+                        @if (Route::has('password.request'))
+                            <a class="text-sm text-blue-600 hover:text-blue-800" href="{{ route('password.request') }}">
+                                Forgot your password?
+                            </a>
+                        @endif
+                    </div>
+
+                    <div class="flex flex-col space-y-4">
+                        <button type="submit" class="btn btn-primary w-full">
+                            Log in
+                        </button>
+
+                        @if (Route::has('register'))
+                            <p class="text-center text-sm text-gray-600">
+                                Don't have an account?
+                                <a href="{{ route('register') }}" class="text-blue-600 hover:text-blue-800">
+                                    Sign up
+                                </a>
+                            </p>
+                        @endif
+                    </div>
+                </form>
             </div>
-            <div style="margin-bottom: 15px;">
-                <label for="password" style="font-weight: bold;">Mot de Passe</label>
-                <input id="password" type="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-            </div>
-            <div style="margin-bottom: 15px; text-align: left;">
-                <input type="checkbox" name="remember" id="remember">
-                <label for="remember">Se souvenir de moi</label>
-            </div>
-            <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
-                Connexion
-            </button>
-            <div style="margin-top: 15px; text-align: center;">
-                <a href="{{ route('password.request') }}" style="color: #4CAF50; text-decoration: none;">Mot de passe oublié ?</a>
-            </div>
-        </form>
+        </div>
     </div>
+</div>
 @endsection

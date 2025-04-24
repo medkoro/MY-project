@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Number;
+use Illuminate\Http\Request;
 
 class NumberController extends Controller
 {
