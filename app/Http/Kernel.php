@@ -55,14 +55,11 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * Register the application's route middleware.
+     * Register any other middleware.
      *
-     * These middleware may be assigned to groups or used individually.
-     *
-     * @return void
+     * @var array<string, class-string|string>
      */
-    public function register()
-    {
+    protected $routeMiddleware = [
         //
-    }
+    ];
 } 

@@ -1,45 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ProfileController;
 
-// Authentication Routes
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Client-side routes
-Route::get('/', [PageController::class, 'index'])->name('home');
-Route::get('/category/{category}', [PageController::class, 'showCategory'])->name('category.show');
-
-// User Dashboard
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('user.dashboard');
+// Redirect root to login if not authenticated
+Route::get('/', function () {
+    return redirect()->route('login');
 });
 
-// Admin-side routes (grouped for clarity)
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
+    // Dashboard redirects to quizzes
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        return redirect()->route('quizzes.index');
     })->name('dashboard');
 
-    // Categories
-    Route::get('/categories/create', [AdminController::class, 'createCategory'])->name('categories.create');
-    Route::post('/categories', [AdminController::class, 'storeCategory'])->name('categories.store');
+    // Quiz routes
+    Route::prefix('quizzes')->name('quizzes.')->group(function () {
+        Route::get('/', [QuizController::class, 'index'])->name('index');
+        Route::get('/{quiz}', [QuizController::class, 'show'])->name('show');
+        Route::post('/{quiz}/submit', [QuizController::class, 'submit'])->name('submit');
+    });
 
-    // Content
-    Route::get('/content', [AdminController::class, 'index'])->name('content.index');
-    Route::get('/content/create', [AdminController::class, 'createContent'])->name('content.create');
-    Route::post('/content', [AdminController::class, 'storeContent'])->name('content.store');
-    Route::get('/content/{content}/edit', [AdminController::class, 'editContent'])->name('content.edit');
-    Route::put('/content/{content}', [AdminController::class, 'updateContent'])->name('content.update');
-    Route::delete('/content/{content}', [AdminController::class, 'destroyContent'])->name('content.destroy');
+    // Profile routes
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Admin routes
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/admin', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+    });
 });
 
-?>
+require __DIR__.'/auth.php';
