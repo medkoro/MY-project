@@ -7,6 +7,10 @@ use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\NumberController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\GameController as AdminGameController;
+use App\Http\Controllers\Admin\UserController;
 
 
 
@@ -24,18 +28,39 @@ use App\Http\Controllers\AnimalController;
 // Front Routes
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 Route::get('/numbers', [NumberController::class, 'index'])->name('numbers.index');
 Route::get('/colors', [ColorController::class, 'index'])->name('colors.index');
 Route::get('/animals', [AnimalController::class, 'index'])->name('animals.index');
-// Admin Routes
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::resource('categories', CategoryController::class);
-    Route::resource('contents', ContentController::class);
+Route::get('/games', [GameController::class, 'index'])->name('games');
+Route::get('/learn', function () {
+    return view('learn');
+})->name('learn');
+
+// Authentication routes
+require __DIR__.'/auth.php';
+
+// Protected routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
 });
 
-// Authentication
-Auth::routes();
-Auth::routes();
+// Admin routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Categories
+    Route::resource('categories', CategoryController::class);
+
+    // Contents
+    Route::resource('contents', ContentController::class);
+
+    // Games
+    Route::resource('games', AdminGameController::class);
+
+    // Users
+    Route::resource('users', UserController::class);
+});
