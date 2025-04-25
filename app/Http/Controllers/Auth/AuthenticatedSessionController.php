@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\ActivityLog;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -28,6 +29,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        // Log login activity
+        ActivityLog::create([
+            'user_id' => Auth::id(),
+            'description' => Auth::user()->is_admin ? 'Admin logged in' : 'User logged in',
+        ]);
 
         // Redirect to admin dashboard if user is admin
         if (Auth::user()->is_admin) {

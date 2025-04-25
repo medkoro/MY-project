@@ -1,4 +1,9 @@
-<!-- filepath: /c:/Users/T470s/kids-learning-site/resources/views/auth/login.blade.php -->
+ActivityLog::create([
+  'user_id'    => Auth::id(),
+  'description'=> Auth::user()->is_admin 
+                   ? 'Admin logged in' 
+                   : 'User logged in',
+]);
 @extends('layouts.app')
 
 @section('content')

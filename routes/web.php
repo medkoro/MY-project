@@ -47,9 +47,8 @@ Route::middleware(['auth'])->group(function () {
         return view('profile');
     })->name('profile');
 });
-
 // Admin routes
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

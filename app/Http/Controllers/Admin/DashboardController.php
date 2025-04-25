@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Game;
 use App\Models\Category;
+use App\Models\ActivityLog;
 
 class DashboardController extends Controller
 {
@@ -18,6 +19,9 @@ class DashboardController extends Controller
             'categories' => Category::count(),
         ];
 
-        return view('admin.dashboard', compact('stats'));
+        // Fetch recent activities
+        $recentActivities = ActivityLog::with('user')->latest()->take(10)->get();
+
+        return view('admin.dashboard', compact('stats', 'recentActivities'));
     }
 } 

@@ -24,6 +24,16 @@
     </div>
 </div>
 
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-6">Manage Content</h2>
+    <div class="flex space-x-4">
+        <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">Manage Categories</a>
+        <a href="{{ route('admin.contents.index') }}" class="btn btn-secondary">Manage Contents</a>
+        <a href="{{ route('admin.games.index') }}" class="btn btn-secondary">Manage Games</a>
+        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Manage Users</a>
+    </div>
+</div>
+
 <!-- Recent Activities -->
 <div class="card">
     <h2 class="text-xl font-bold mb-4">Recent Activities</h2>
@@ -39,7 +49,7 @@
             <tbody class="bg-white divide-y divide-gray-200">
                 @forelse($recentActivities ?? [] as $activity)
                 <tr class="table-row">
-                    <td class="table-cell">{{ $activity->user_name }}</td>
+                    <td class="table-cell">{{ $activity->user->name }}</td>
                     <td class="table-cell">{{ $activity->description }}</td>
                     <td class="table-cell">{{ $activity->created_at->diffForHumans() }}</td>
                 </tr>
