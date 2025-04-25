@@ -45,4 +45,12 @@ class User extends Authenticatable
         'password' => 'hashed',
         'is_admin' => 'boolean',
     ];
+
+    /**
+     * Get the scores for the user.
+     */
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

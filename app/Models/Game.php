@@ -10,9 +10,10 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'title',
         'description',
-        'type',
+        'url',
+        'image_path',
         'is_active',
         'play_count',
     ];

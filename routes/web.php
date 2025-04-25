@@ -12,6 +12,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\GameController as AdminGameController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\Admin\QuizController as AdminQuizController;
 
 
 
@@ -38,6 +40,14 @@ Route::get('/learn', function () {
     return view('learn');
 })->name('learn');
 
+// Quiz Routes
+Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes.index');
+Route::get('/quizzes/{quiz}', [QuizController::class, 'show'])->name('quizzes.show');
+Route::get('/quizzes/{quiz}/take', [QuizController::class, 'take'])->name('quizzes.take');
+Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
+Route::get('/quizzes/{quiz}/results', [QuizController::class, 'results'])->name('quizzes.results');
+Route::get('/scoreboard', [QuizController::class, 'scoreboard'])->name('scoreboard');
+
 // Authentication routes
 require __DIR__.'/auth.php';
 
@@ -60,6 +70,12 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
 
     // Games
     Route::resource('games', AdminGameController::class);
+
+    // Quizzes
+    Route::resource('quizzes', AdminQuizController::class);
+    Route::post('quizzes/{quiz}/questions', [AdminQuizController::class, 'addQuestion'])->name('quizzes.questions.store');
+    Route::delete('questions/{question}', [AdminQuizController::class, 'deleteQuestion'])->name('questions.destroy');
+    Route::get('quizzes/{quiz}/scores', [AdminQuizController::class, 'scores'])->name('quizzes.scores');
 
     // Users
     Route::resource('users', UserController::class);
