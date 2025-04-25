@@ -31,6 +31,7 @@
         <a href="{{ route('admin.contents.index') }}" class="btn btn-secondary">Manage Contents</a>
         <a href="{{ route('admin.games.index') }}" class="btn btn-secondary">Manage Games</a>
         <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Manage Users</a>
+        <a href="{{ route('admin.database.index') }}" class="btn btn-secondary">Database Manager</a>
     </div>
 </div>
 

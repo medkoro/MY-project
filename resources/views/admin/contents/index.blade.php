@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('admin-content')
+@section('content')
 <div class="flex justify-between items-center mb-6">
     <h1 class="text-2xl font-bold">Gestion des Contenus</h1>
     <a href="{{ route('admin.contents.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">

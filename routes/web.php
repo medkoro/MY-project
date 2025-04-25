@@ -14,8 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Admin\QuizController as AdminQuizController;
-
-
+use App\Http\Controllers\Admin\DatabaseManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,4 +78,13 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
 
     // Users
     Route::resource('users', UserController::class);
+
+    // Database Manager
+    Route::get('/database', [DatabaseManagerController::class, 'index'])->name('database.index');
+    Route::get('/database/{table}', [DatabaseManagerController::class, 'showTable'])->name('database.table');
+    Route::get('/database/{table}/create', [DatabaseManagerController::class, 'createRecord'])->name('database.create');
+    Route::post('/database/{table}', [DatabaseManagerController::class, 'storeRecord'])->name('database.store');
+    Route::get('/database/{table}/{id}/edit', [DatabaseManagerController::class, 'editRecord'])->name('database.edit');
+    Route::put('/database/{table}/{id}', [DatabaseManagerController::class, 'updateRecord'])->name('database.update');
+    Route::delete('/database/{table}/{id}', [DatabaseManagerController::class, 'deleteRecord'])->name('database.delete');
 });
