@@ -9,8 +9,17 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Comic+Sans+MS&family=Bubblegum+Sans&display=swap" rel="stylesheet">
 </head>
+
 <body class="min-h-screen bg-blue-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-md">
@@ -42,6 +51,8 @@
             </div>
         </div>
     </nav>
+       <!-- Styles -->
+
 
     <!-- Main Content -->
     <main class="py-12">
