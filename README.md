@@ -43,7 +43,7 @@ KidsLearn is an educational platform designed to make learning fun and engaging 
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/medkoro/MY-project.git
 cd kidslearn
 ```
 
