@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Nom de la couleur
+            $table->string('name'); // Nom de la couleur en anglais
+            $table->string('name_fr'); // Nom de la couleur en français
             $table->string('hex_code'); // Code hexadécimal de la couleur
             $table->timestamps();
         });

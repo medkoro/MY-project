@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('animals', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Nom de l'animal en anglais
-            $table->string('name_fr'); // Nom de l'animal en français
+            $table->string('name'); // Nom de l'animal
+            $table->string('name_fr'); // Nom en français
+            $table->string('description_fr'); // Description en français
             $table->string('image_path'); // Chemin de l'image
-            $table->string('audio_path')->nullable(); // Chemin du fichier audio
+            $table->string('audio_path'); // Chemin du fichier audio
             $table->timestamps();
         });
     }
@@ -28,4 +29,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('animals');
     }
-};
+}; 

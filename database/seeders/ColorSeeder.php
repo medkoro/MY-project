@@ -13,15 +13,15 @@ class ColorSeeder extends Seeder
      */
     public function run(): void
     {
-        Color::create(['name' => 'Rouge', 'hex_code' => '#FF0000']);
-        Color::create(['name' => 'Bleu', 'hex_code' => '#0000FF']);
-        Color::create(['name' => 'Vert', 'hex_code' => '#00FF00']);
-        Color::create(['name' => 'Jaune', 'hex_code' => '#FFFF00']);
-        Color::create(['name' => 'Orange', 'hex_code' => '#FFA500']);
-        Color::create(['name' => 'Violet', 'hex_code' => '#800080']);
-        Color::create(['name' => 'Rose', 'hex_code' => '#FFC0CB']);
-        Color::create(['name' => 'Noir', 'hex_code' => '#000000']);
-        Color::create(['name' => 'Blanc', 'hex_code' => '#FFFFFF']);
-        Color::create(['name' => 'Gris', 'hex_code' => '#808080']);
+        Color::create(['name' => 'Rouge', 'name_fr' => 'Rouge', 'hex_code' => '#FF0000']);
+        Color::create(['name' => 'Bleu', 'name_fr' => 'Bleu', 'hex_code' => '#0000FF']);
+        Color::create(['name' => 'Vert', 'name_fr' => 'Vert', 'hex_code' => '#00FF00']);
+        Color::create(['name' => 'Jaune', 'name_fr' => 'Jaune', 'hex_code' => '#FFFF00']);
+        Color::create(['name' => 'Orange', 'name_fr' => 'Orange', 'hex_code' => '#FFA500']);
+        Color::create(['name' => 'Violet', 'name_fr' => 'Violet', 'hex_code' => '#800080']);
+        Color::create(['name' => 'Rose', 'name_fr' => 'Rose', 'hex_code' => '#FFC0CB']);
+        Color::create(['name' => 'Noir', 'name_fr' => 'Noir', 'hex_code' => '#000000']);
+        Color::create(['name' => 'Blanc', 'name_fr' => 'Blanc', 'hex_code' => '#FFFFFF']);
+        Color::create(['name' => 'Gris', 'name_fr' => 'Gris', 'hex_code' => '#808080']);
     }
 }
