@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Admin\QuizController as AdminQuizController;
 use App\Http\Controllers\Admin\DatabaseManagerController;
+use App\Http\Controllers\AlphabetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::get('/', function () {
 Route::get('/colors', [ColorController::class, 'index'])->name('colors.index');
 Route::get('/numbers', [NumberController::class, 'index'])->name('numbers.index');
 Route::get('/animals', [AnimalController::class, 'index'])->name('animals.index');
+Route::get('/alphabet', [AlphabetController::class, 'index'])->name('alphabet.index');
 Route::get('/games', [GameController::class, 'index'])->name('games');
 Route::get('/learn', function () {
     return view('learn');

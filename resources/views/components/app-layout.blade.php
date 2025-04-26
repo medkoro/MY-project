@@ -59,6 +59,9 @@
                             <a href="{{ route('colors.index') }}" class="nav-link">{{ __('Colors') }}</a>
                             <a href="{{ route('numbers.index') }}" class="nav-link">{{ __('Numbers') }}</a>
                             <a href="{{ route('animals.index') }}" class="nav-link">{{ __('Animals') }}</a>
+                            <a href="{{ route('alphabet.index') }}" class="nav-link">{{ __('Alphabet') }}</a>
+
+
                         </div>
                     </div>
                 </div>

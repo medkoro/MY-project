@@ -62,6 +62,18 @@
                     Explorer
                 </a>
             </div>
+
+             <!-- Alphabet Card -->
+             <div class="category-card animals">
+                <div class="category-icon mb-4">
+                    {{-- Image removed --}}
+                </div>
+                <h2 class="category-title text-blue-600">Alphabet 🔡</h2>
+                <p class="category-description">Découvrez l'alphabet.</p>
+                <a href="{{ route('alphabet.index') }}" class="btn btn-primary w-full text-center">
+                    Explorer
+                </a>
+            </div>
         </div>
     </div>
 </div>

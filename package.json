@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build && cp .vite/manifest.json public/build/",
         "serve": "php artisan serve",
         "start": "concurrently \"npm run dev\" \"npm run serve\""
     },
