@@ -1,0 +1,89 @@
+/* Styles pour les cartes de catégories */
+.category-card {
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Carte Fruits */
+.category-card.fruits {
+    background-color: #FEF3C7;
+    border: 2px solid #FCD34D;
+}
+
+.category-card.fruits:hover {
+    background-color: #FDE68A;
+}
+
+.category-card.fruits .category-title {
+    color: #B45309;
+}
+
+/* Carte Légumes */
+.category-card.legumes {
+    background-color: #D1FAE5;
+    border: 2px solid #34D399;
+}
+
+.category-card.legumes:hover {
+    background-color: #A7F3D0;
+}
+
+.category-card.legumes .category-title {
+    color: #065F46;
+}
+
+/* Carte Transport */
+.category-card.transport {
+    background-color: #DBEAFE;
+    border: 2px solid #60A5FA;
+}
+
+.category-card.transport:hover {
+    background-color: #BFDBFE;
+}
+
+.category-card.transport .category-title {
+    color: #1E40AF;
+}
+
+/* Styles communs */
+.category-icon {
+    margin-bottom: 1rem;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.category-description {
+    color: #4B5563;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+    background: #4f46e5;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background: #4338ca;
+} 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\NumberController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\TransportController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\GameController as AdminGameController;
@@ -16,6 +17,8 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Admin\QuizController as AdminQuizController;
 use App\Http\Controllers\Admin\DatabaseManagerController;
 use App\Http\Controllers\AlphabetController;
+use App\Http\Controllers\FruitController;
+use App\Http\Controllers\LegumeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +39,9 @@ Route::get('/colors', [ColorController::class, 'index'])->name('colors.index');
 Route::get('/numbers', [NumberController::class, 'index'])->name('numbers.index');
 Route::get('/animals', [AnimalController::class, 'index'])->name('animals.index');
 Route::get('/alphabet', [AlphabetController::class, 'index'])->name('alphabet.index');
+Route::get('/transport', [TransportController::class, 'index'])->name('transport.index');
+Route::get('/fruits', [FruitController::class, 'index'])->name('fruits.index');
+Route::get('/legumes', [LegumeController::class, 'index'])->name('legumes.index');
 Route::get('/games', [GameController::class, 'index'])->name('games');
 Route::get('/learn', function () {
     return view('learn');

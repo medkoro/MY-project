@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-8 text-center text-indigo-600">Les Couleurs</h1>
-    
+                    
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @php
             $colors = [
@@ -21,16 +21,16 @@
             ];
         @endphp
 
-        @foreach($colors as $color)
+                        @foreach($colors as $color)
             <div class="p-4 rounded-lg shadow-md text-center transition-transform hover:scale-105 relative cursor-pointer"
                  style="background-color: {{ $color['hex_code'] }}; color: {{ in_array($color['name'], ['Blanc', 'Jaune']) ? 'black' : 'white' }}"
                  onclick="playColorSound('{{ $color['name_fr'] }}')">
                 <div class="font-bold mb-2">{{ $color['name'] }}</div>
                 <div>{{ $color['name_fr'] }}</div>
-            </div>
-        @endforeach
-    </div>
-</div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
 
 <script>
 function playColorSound(colorName) {

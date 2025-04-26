@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-8 text-center text-indigo-600">Les Nombres</h1>
-    
+                    
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         @for($i = 1; $i <= 10; $i++)
             <div class="p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow relative cursor-pointer"
@@ -22,7 +22,7 @@
                 ][$i] ?? '#F3F4F6' }};"
                  onclick="playNumberSound('{{ $i }}')">
                 <div class="text-4xl font-bold text-center text-white mb-2">{{ $i }}</div>
-                <div class="text-lg text-center mb-2">
+                                <div class="text-lg text-center mb-2">
                     <span class="font-semibold text-white">{{ $i }}</span>
                 </div>
             </div>

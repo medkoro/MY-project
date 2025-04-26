@@ -13,17 +13,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Créer l'utilisateur admin s'il n'existe pas
+        if (!User::where('email', 'test@example.com')->exists()) {
+            User::factory()->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
+        }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-        $this->call(NumberSeeder::class);
-        $this->call(ColorSeeder::class);
-        $this->call(AnimalSeeder::class);
+        // Exécuter les seeders dans l'ordre
         $this->call([
+            AnimalSeeder::class,
+            ColorSeeder::class,
+            NumberSeeder::class,
+            TransportSeeder::class,
             AdminUserSeeder::class,
+            FruitSeeder::class,
+            LegumeSeeder::class,
         ]);
     }
 }
