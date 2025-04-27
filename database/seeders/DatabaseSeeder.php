@@ -13,8 +13,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Créer l'utilisateur admin s'il n'existe pas
+        if (!User::where('email', 'test@example.com')->exists()) {
+            User::factory()->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
+        }
 
+<<<<<<< HEAD
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -23,9 +30,21 @@ class DatabaseSeeder extends Seeder
         $this->call(NumberSeeder::class);
         $this->call(ColorSeeder::class);
         $this->call(AnimalSeeder::class);
+=======
+        // Exécuter les seeders dans l'ordre
+>>>>>>> 5b49e6a373a032417f723546d5a545cedb7ebf06
         $this->call([
+            AnimalSeeder::class,
+            ColorSeeder::class,
+            NumberSeeder::class,
+            TransportSeeder::class,
             AdminUserSeeder::class,
+<<<<<<< HEAD
             QuizSeeder::class,
+=======
+            FruitSeeder::class,
+            LegumeSeeder::class,
+>>>>>>> 5b49e6a373a032417f723546d5a545cedb7ebf06
         ]);
     }
 }
