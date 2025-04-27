@@ -44,7 +44,7 @@ KidsLearn is an educational platform designed to make learning fun and engaging 
 1. Clone the repository:
 ```bash
 git clone https://github.com/medkoro/MY-project.git
-cd kidslearn
+cd MY-project
 ```
 
 2. Install PHP dependencies:
