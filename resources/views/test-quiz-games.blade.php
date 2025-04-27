@@ -11,10 +11,12 @@
             <p class="text-center mb-4">Take a break and play these fun games while you quiz!</p>
             
             <!-- Game Selection Tabs -->
-            <div class="game-tabs flex justify-center mb-4">
+            <div class="game-tabs flex justify-center mb-4 flex-wrap">
                 <button class="game-tab px-4 py-2 mx-1 rounded-t-lg bg-blue-100 hover:bg-blue-200 active-game" data-game="catch-stars">Catch Stars</button>
                 <button class="game-tab px-4 py-2 mx-1 rounded-t-lg bg-gray-100 hover:bg-blue-200" data-game="memory-cards">Memory Match</button>
                 <button class="game-tab px-4 py-2 mx-1 rounded-t-lg bg-gray-100 hover:bg-blue-200" data-game="balloon-pop">Balloon Pop</button>
+                <button class="game-tab px-4 py-2 mx-1 rounded-t-lg bg-gray-100 hover:bg-blue-200" data-game="word-scramble">Word Scramble</button>
+                <button class="game-tab px-4 py-2 mx-1 rounded-t-lg bg-gray-100 hover:bg-blue-200" data-game="math-challenge">Math Challenge</button>
             </div>
             
             <!-- Game Containers -->
@@ -40,6 +42,37 @@
                     <div class="text-center mb-2">Pop the balloons to reveal words!</div>
                     <div class="balloon-game-area relative h-64 bg-gradient-to-b from-blue-100 to-white rounded-lg overflow-hidden">
                         <!-- Balloons will be created by JS -->
+                    </div>
+                </div>
+                
+                <!-- Word Scramble Game -->
+                <div class="game-container hidden" id="word-scramble-game">
+                    <div class="text-center mb-2">Unscramble the educational words!</div>
+                    <div class="word-scramble-area flex flex-col items-center justify-center h-64 bg-gradient-to-b from-green-100 to-blue-50 rounded-lg">
+                        <div class="scrambled-word text-3xl font-bold tracking-wider mb-4"></div>
+                        <div class="flex mb-4">
+                            <input type="text" class="scramble-input px-4 py-2 rounded-lg border-2 border-green-300 focus:outline-none focus:border-green-500" placeholder="Type your answer...">
+                            <button class="submit-word ml-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">Submit</button>
+                        </div>
+                        <div class="word-scramble-score text-xl">Score: <span id="scramble-score">0</span></div>
+                        <div class="word-scramble-feedback mt-2 text-green-600 font-bold"></div>
+                    </div>
+                </div>
+                
+                <!-- Math Challenge Game -->
+                <div class="game-container hidden" id="math-challenge-game">
+                    <div class="text-center mb-2">Solve the math problems quickly!</div>
+                    <div class="math-challenge-area flex flex-col items-center justify-center h-64 bg-gradient-to-b from-purple-100 to-pink-50 rounded-lg">
+                        <div class="math-problem text-3xl font-bold mb-4"></div>
+                        <div class="flex mb-4">
+                            <input type="number" class="math-input px-4 py-2 rounded-lg border-2 border-purple-300 focus:outline-none focus:border-purple-500" placeholder="Answer">
+                            <button class="submit-answer ml-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg">Submit</button>
+                        </div>
+                        <div class="math-challenge-score text-xl">Score: <span id="math-score">0</span></div>
+                        <div class="math-challenge-feedback mt-2 text-purple-600 font-bold"></div>
+                        <div class="math-timer mt-2 bg-purple-200 h-2 w-full rounded-full overflow-hidden">
+                            <div class="math-timer-bar bg-purple-500 h-full w-full"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -188,6 +221,35 @@
                     const balloonArea = document.querySelector('.balloon-game-area');
                     balloonArea.innerHTML = '';
                     break;
+                    
+                case 'word-scramble':
+                    const wordScrambleArea = document.querySelector('.word-scramble-area');
+                    wordScrambleArea.innerHTML = `
+                        <div class="scrambled-word text-3xl font-bold tracking-wider mb-4"></div>
+                        <div class="flex mb-4">
+                            <input type="text" class="scramble-input px-4 py-2 rounded-lg border-2 border-green-300 focus:outline-none focus:border-green-500" placeholder="Type your answer...">
+                            <button class="submit-word ml-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">Submit</button>
+                        </div>
+                        <div class="word-scramble-score text-xl">Score: <span id="scramble-score">0</span></div>
+                        <div class="word-scramble-feedback mt-2 text-green-600 font-bold"></div>
+                    `;
+                    break;
+                    
+                case 'math-challenge':
+                    const mathChallengeArea = document.querySelector('.math-challenge-area');
+                    mathChallengeArea.innerHTML = `
+                        <div class="math-problem text-3xl font-bold mb-4"></div>
+                        <div class="flex mb-4">
+                            <input type="number" class="math-input px-4 py-2 rounded-lg border-2 border-purple-300 focus:outline-none focus:border-purple-500" placeholder="Answer">
+                            <button class="submit-answer ml-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg">Submit</button>
+                        </div>
+                        <div class="math-challenge-score text-xl">Score: <span id="math-score">0</span></div>
+                        <div class="math-challenge-feedback mt-2 text-purple-600 font-bold"></div>
+                        <div class="math-timer mt-2 bg-purple-200 h-2 w-full rounded-full overflow-hidden">
+                            <div class="math-timer-bar bg-purple-500 h-full w-full"></div>
+                        </div>
+                    `;
+                    break;
             }
         }
         
@@ -205,6 +267,14 @@
                     
                 case 'balloon-pop':
                     startBalloonGame();
+                    break;
+                    
+                case 'word-scramble':
+                    startWordScrambleGame();
+                    break;
+                    
+                case 'math-challenge':
+                    startMathChallengeGame();
                     break;
             }
         }
@@ -405,6 +475,217 @@
                 }, 6000);
                 
             }, 800);
+        }
+        
+        // Word Scramble Game
+        function startWordScrambleGame() {
+            gameScore = 0;
+            document.querySelector('#scramble-score').textContent = '0';
+            
+            // Educational words for scrambling
+            const words = [
+                'EDUCATION', 'KNOWLEDGE', 'LEARNING', 'SCIENCE', 'MATHEMATICS', 
+                'READING', 'WRITING', 'HISTORY', 'GEOGRAPHY', 'PHYSICS', 
+                'CHEMISTRY', 'BIOLOGY', 'LANGUAGE', 'LITERATURE', 'RESEARCH'
+            ];
+            
+            let currentWordIndex = 0;
+            let wordsCompleted = 0;
+            let startTime = Date.now();
+            const gameDuration = 60000; // 1 minute
+            const maxWords = 10; // Max words to complete
+            
+            // Scramble a word
+            function scrambleWord(word) {
+                let scrambled = '';
+                const letters = word.split('');
+                while (letters.length > 0) {
+                    const index = Math.floor(Math.random() * letters.length);
+                    scrambled += letters[index];
+                    letters.splice(index, 1);
+                }
+                return scrambled;
+            }
+            
+            // Show next word
+            function showNextWord() {
+                if (wordsCompleted >= maxWords || Date.now() - startTime > gameDuration) {
+                    // Game over
+                    document.querySelector('.end-game').click();
+                    return;
+                }
+                
+                currentWordIndex = Math.floor(Math.random() * words.length);
+                const word = words[currentWordIndex];
+                const scrambled = scrambleWord(word);
+                
+                document.querySelector('.scrambled-word').textContent = scrambled;
+                document.querySelector('.scramble-input').value = '';
+                document.querySelector('.word-scramble-feedback').textContent = '';
+                document.querySelector('.scramble-input').focus();
+            }
+            
+            // Set up submit button
+            const submitButton = document.querySelector('.submit-word');
+            const input = document.querySelector('.scramble-input');
+            
+            const submitGuess = () => {
+                const guess = input.value.trim().toUpperCase();
+                const correctWord = words[currentWordIndex];
+                
+                if (guess === correctWord) {
+                    // Correct!
+                    document.querySelector('.word-scramble-feedback').textContent = 'Correct! +5 points';
+                    document.querySelector('.word-scramble-feedback').classList.remove('text-red-600');
+                    document.querySelector('.word-scramble-feedback').classList.add('text-green-600');
+                    gameScore += 5;
+                    document.querySelector('#scramble-score').textContent = gameScore;
+                    wordsCompleted++;
+                    
+                    // Show next word after a delay
+                    setTimeout(showNextWord, 1000);
+                } else {
+                    // Wrong
+                    document.querySelector('.word-scramble-feedback').textContent = 'Try again!';
+                    document.querySelector('.word-scramble-feedback').classList.remove('text-green-600');
+                    document.querySelector('.word-scramble-feedback').classList.add('text-red-600');
+                }
+            };
+            
+            submitButton.addEventListener('click', submitGuess);
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    submitGuess();
+                }
+            });
+            
+            // Start timer
+            gameInterval = setInterval(() => {
+                if (Date.now() - startTime > gameDuration) {
+                    clearInterval(gameInterval);
+                    gameInterval = null;
+                    document.querySelector('.end-game').click();
+                }
+            }, 1000);
+            
+            // Show first word
+            showNextWord();
+        }
+        
+        // Math Challenge Game
+        function startMathChallengeGame() {
+            gameScore = 0;
+            document.querySelector('#math-score').textContent = '0';
+            
+            let currentProblem;
+            let problemsSolved = 0;
+            let startTime = Date.now();
+            const gameDuration = 45000; // 45 seconds
+            const timerBar = document.querySelector('.math-timer-bar');
+            const problemsPerGame = 10;
+            
+            // Generate a random math problem
+            function generateProblem() {
+                const operations = ['+', '-', '*'];
+                const operation = operations[Math.floor(Math.random() * operations.length)];
+                
+                let num1, num2, solution;
+                
+                switch (operation) {
+                    case '+':
+                        num1 = Math.floor(Math.random() * 50) + 1;
+                        num2 = Math.floor(Math.random() * 50) + 1;
+                        solution = num1 + num2;
+                        break;
+                    case '-':
+                        num1 = Math.floor(Math.random() * 50) + 50; // Ensure larger number
+                        num2 = Math.floor(Math.random() * 50) + 1;
+                        solution = num1 - num2;
+                        break;
+                    case '*':
+                        num1 = Math.floor(Math.random() * 12) + 1; // Times tables 1-12
+                        num2 = Math.floor(Math.random() * 12) + 1;
+                        solution = num1 * num2;
+                        break;
+                }
+                
+                return {
+                    problem: `${num1} ${operation} ${num2} = ?`,
+                    solution: solution
+                };
+            }
+            
+            // Show next problem
+            function showNextProblem() {
+                if (problemsSolved >= problemsPerGame || Date.now() - startTime > gameDuration) {
+                    // Game over
+                    document.querySelector('.end-game').click();
+                    return;
+                }
+                
+                currentProblem = generateProblem();
+                document.querySelector('.math-problem').textContent = currentProblem.problem;
+                document.querySelector('.math-input').value = '';
+                document.querySelector('.math-challenge-feedback').textContent = '';
+                document.querySelector('.math-input').focus();
+            }
+            
+            // Set up submit button
+            const submitButton = document.querySelector('.submit-answer');
+            const input = document.querySelector('.math-input');
+            
+            const submitAnswer = () => {
+                const answer = parseInt(input.value.trim());
+                
+                if (!isNaN(answer) && answer === currentProblem.solution) {
+                    // Correct!
+                    document.querySelector('.math-challenge-feedback').textContent = 'Correct! +10 points';
+                    document.querySelector('.math-challenge-feedback').classList.remove('text-red-600');
+                    document.querySelector('.math-challenge-feedback').classList.add('text-green-600');
+                    
+                    // Add points based on remaining time
+                    const timeElapsed = Date.now() - startTime;
+                    const timePercentage = 1 - (timeElapsed / gameDuration);
+                    const timeBonus = Math.floor(timePercentage * 5);
+                    gameScore += 10 + timeBonus;
+                    
+                    document.querySelector('#math-score').textContent = gameScore;
+                    problemsSolved++;
+                    
+                    // Show next problem after a delay
+                    setTimeout(showNextProblem, 800);
+                } else {
+                    // Wrong
+                    document.querySelector('.math-challenge-feedback').textContent = 'Try again!';
+                    document.querySelector('.math-challenge-feedback').classList.remove('text-green-600');
+                    document.querySelector('.math-challenge-feedback').classList.add('text-red-600');
+                }
+            };
+            
+            submitButton.addEventListener('click', submitAnswer);
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    submitAnswer();
+                }
+            });
+            
+            // Update timer bar
+            gameInterval = setInterval(() => {
+                const timeElapsed = Date.now() - startTime;
+                const timePercentage = 1 - (timeElapsed / gameDuration);
+                
+                if (timePercentage <= 0) {
+                    clearInterval(gameInterval);
+                    gameInterval = null;
+                    document.querySelector('.end-game').click();
+                    return;
+                }
+                
+                timerBar.style.width = `${timePercentage * 100}%`;
+            }, 100);
+            
+            // Show first problem
+            showNextProblem();
         }
     });
 </script>
