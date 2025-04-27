@@ -19,11 +19,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        $this->call(CategorySeeder::class);
         $this->call(NumberSeeder::class);
         $this->call(ColorSeeder::class);
         $this->call(AnimalSeeder::class);
         $this->call([
             AdminUserSeeder::class,
+            QuizSeeder::class,
         ]);
     }
 }

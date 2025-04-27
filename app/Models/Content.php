@@ -11,9 +11,11 @@ class Content extends Model
 
     protected $fillable = [
         'title',
-        'content',
-        'type',
-        'status',
+        'description',
+        'category_id',
+        'image_path',
+        'audio_path',
+        'video_path',
     ];
 
     public function category()

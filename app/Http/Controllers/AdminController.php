@@ -68,4 +68,4 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Content deleted successfully');
     }
-} 
+}

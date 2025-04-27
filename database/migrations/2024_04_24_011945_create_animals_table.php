@@ -6,27 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
     {
-        Schema::create('animals', function (Blueprint $table) {
-            $table->id();
-            $table->string('name'); // Nom de l'animal
-            $table->string('name_fr'); // Nom en français
-            $table->string('description_fr'); // Description en français
-            $table->string('image_path'); // Chemin de l'image
-            $table->string('audio_path'); // Chemin du fichier audio
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('animals')) {
+            Schema::create('animals', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('name_fr');
+                $table->string('description_fr');
+                $table->string('image_path');
+                $table->string('audio_path')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('animals');
     }
-}; 
+};

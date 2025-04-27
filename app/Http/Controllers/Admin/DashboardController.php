@@ -19,9 +19,8 @@ class DashboardController extends Controller
             'categories' => Category::count(),
         ];
 
-        // Fetch recent activities
         $recentActivities = ActivityLog::with('user')->latest()->take(10)->get();
 
         return view('admin.dashboard', compact('stats', 'recentActivities'));
     }
-} 
+}

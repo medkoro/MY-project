@@ -102,6 +102,64 @@ npm run dev
 - The application will be available at `http://localhost:8000`
 - Vite development server runs at `http://localhost:5173`
 
+## Admin Access
+
+To access the admin panel, use the following credentials:
+
+```
+URL: http://localhost:8000/admin/dashboard
+Email: admin@example.com
+Password: password
+```
+
+If you've used the database seeder, the above credentials should work out of the box. Otherwise, you'll need to create an admin user by registering a regular user and then manually updating the `is_admin` field to `1` in the database.
+
+## Test Accounts
+
+For testing purposes, you can use these pre-configured accounts:
+
+```
+Regular User:
+Email: user@example.com
+Password: password
+
+Teacher Account:
+Email: teacher@example.com
+Password: password
+```
+
+## Logs and Debugging
+
+### Application Logs
+Application logs are stored in the `storage/logs` directory. To view the latest logs:
+
+```bash
+tail -f storage/logs/laravel.log
+```
+
+### Test Logs
+Test-specific logs are generated when running the test suite and can be found in:
+
+```bash
+storage/logs/test.log
+```
+
+To enable more detailed test logging, modify your `.env.testing` file:
+
+```
+LOG_LEVEL=debug
+```
+
+### Admin Activity Logs
+All admin actions are logged in the database using the `activity_logs` table. You can view these logs through the admin dashboard under the "Recent Activities" section.
+
+To manually query the admin logs from the database:
+
+```bash
+php artisan tinker
+>>> App\Models\ActivityLog::with('user')->latest()->get();
+```
+
 ## Testing
 
 Run the test suite:

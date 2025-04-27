@@ -42,7 +42,6 @@
                         <a href="{{ url('/') }}" class="nav-link">Home</a>
                         <a href="{{ route('games') }}" class="nav-link">Games</a>
                         <a href="{{ route('quizzes.index') }}" class="nav-link">Quizzes</a>
-                        <a href="{{ url('/learn') }}" class="nav-link">Learn</a>
                         @auth
                             @if(auth()->user()->is_admin)
                                 <a href="{{ url('/admin/dashboard') }}" class="nav-link">Admin</a>

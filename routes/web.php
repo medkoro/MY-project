@@ -16,17 +16,6 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Admin\QuizController as AdminQuizController;
 use App\Http\Controllers\Admin\DatabaseManagerController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 // Front Routes
 Route::get('/', function () {
     return view('welcome');
@@ -45,6 +34,12 @@ Route::get('/quizzes/{quiz}', [QuizController::class, 'show'])->name('quizzes.sh
 Route::get('/quizzes/{quiz}/take', [QuizController::class, 'take'])->name('quizzes.take');
 Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
 Route::get('/quizzes/{quiz}/results', [QuizController::class, 'results'])->name('quizzes.results');
+
+// Test Quiz Games Page
+Route::get('/test-quiz-games', function() {
+    return view('test-quiz-games');
+})->name('test.quiz.games');
+
 Route::get('/scoreboard', [QuizController::class, 'scoreboard'])->name('scoreboard');
 
 // Authentication routes
@@ -56,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
         return view('profile');
     })->name('profile');
 });
+
 // Admin routes
 Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
     // Dashboard
